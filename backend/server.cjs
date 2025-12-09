@@ -23,6 +23,11 @@ app.get('/api/demo', (req, res) => {
     fs.appendFileSync(path.join(logsDir, 'access.log'), logMessage);
 
     res.json({
+        student: {
+            id: '6604101403',
+            firstName: 'ชยานันต์',
+            lastName: 'หล้ากาศ'
+        },
         git: {
             title: 'Advanced Git Workflow',
             detail: 'ใช้ branch protection บน GitHub, code review ใน PR, และ squash merge เพื่อ history สะอาด'

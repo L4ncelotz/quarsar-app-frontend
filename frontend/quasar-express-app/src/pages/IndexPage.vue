@@ -3,8 +3,15 @@
     <div class="text-h4 q-mb-md">
       Advanced Full-Stack Demo (Quasar + Express)
     </div>
-    <div class="text-subtitle1 q-mb-md text-grey-7">
-      รหัส: 6604101403 | ชื่อ: ชยานันต์ หล้ากาศ
+
+    <!-- Navigation to Task Page -->
+    <div class="q-mb-md">
+      <q-btn 
+        color="secondary" 
+        icon="assignment"
+        label="View Tasks (Supabase)" 
+        to="/tasks"
+      />
     </div>
 
     <!-- Git Workflow (จากตัวอย่างก่อน) -->
@@ -54,6 +61,12 @@
         </div>
         <div v-else>
           <q-list bordered separator class="q-mt-sm">
+            <q-item v-if="apiData.student && apiData.student.id">
+              <q-item-section>
+                <q-item-label>Student Information</q-item-label>
+                <q-item-label caption>รหัส: {{ apiData.student.id }} | ชื่อ: {{ apiData.student.firstName }} {{ apiData.student.lastName }}</q-item-label>
+              </q-item-section>
+            </q-item>
             <q-item>
               <q-item-section>
                 <q-item-label>{{ apiData.git.title }}</q-item-label>
@@ -128,7 +141,11 @@ const dockerItems = [
 ];
 
 // API Integration
-const apiData = ref({ git: { title: '', detail: '' }, docker: { title: '', detail: '' } });
+const apiData = ref({ 
+  git: { title: '', detail: '' }, 
+  docker: { title: '', detail: '' },
+  student: { id: '', firstName: '', lastName: '' }
+});
 const loading = ref(true);
 const error = ref(null);
 
